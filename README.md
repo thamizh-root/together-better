@@ -1,50 +1,39 @@
-# Welcome to your Expo app 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## Get started
+learning from this video: [Build a Full Stack React Native App with Payments | PostgreSQL, TypeScript, Stripe, Tailwind ](https://www.youtube.com/watch?v=kmy_YNhl0mw&list=PL6QREj8te1P54rZQx5AWWtFyf1hlznFjL&index=1)
 
-1. Install dependencies
+why am i not trying this: https://netbeans.apache.org/front/main/download/nb27/
 
-   ```bash
-   npm install
-   ```
+neno database: https://console.neon.tech/app/projects/broad-sea-14561247
 
-2. Start the app
+ 
 
-   ```bash
-   npx expo start
-   ```
+expo start - to start the application
 
-In the output, you'll find options to open the app in a
+step 01 is installing nativewind css
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+simply follow the steps, yet you will fail at 
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## Get a fresh project
 
-When you're ready, run:
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  // NOTE: Update this to include the paths to all files that contain Nativewind classes.
+  content: ["./App.tsx", "./components/**/*.{js,jsx,ts,tsx}"],
+  presets: [require("nativewind/preset")],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+closly look at the ‘content’ 
 
-```bash
-npm run reset-project
-```
+it should match all the files that gonna use expo
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+ 
 
-## Learn more
 
-To learn more about developing your project with Expo, look at the following resources:
+i dont think we can view splash screen in expo go. see the stackoverflow here https://stackoverflow.com/questions/77405886/expo-app-not-displaying-custom-icon-and-splash-image . there is a note to that as well https://docs.expo.dev/develop/user-interface/splash-screen-and-app-icon/#splash-screen 
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
-## Join the community
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
