@@ -1,5 +1,5 @@
 
-50min
+1hr 3min
 
 learning from this video: [Build a Full Stack React Native App with Payments | PostgreSQL, TypeScript, Stripe, Tailwind ](https://www.youtube.com/watch?v=kmy_YNhl0mw&list=PL6QREj8te1P54rZQx5AWWtFyf1hlznFjL&index=1)
 
@@ -46,5 +46,11 @@ interesting finding: just redirecting using "/" wont hide header
 "_layout.tsx" is used to configure how (with or without header options) to display the page and where (stack, tabs, slot) to display the page
 
 Q: /settings is not (tabs)/settings, but docs says it will work.
+
+
+sat, 27 september
+1. css has width-[29px] - what does it mean
+2. why importing like @assets/images/<something> throws error
+3. how adding types/images.d.ts solved above @assets error
 
 
