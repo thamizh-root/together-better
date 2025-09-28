@@ -1,5 +1,5 @@
 
-1hr 3min
+1hr 24min
 
 learning from this video: [Build a Full Stack React Native App with Payments | PostgreSQL, TypeScript, Stripe, Tailwind ](https://www.youtube.com/watch?v=kmy_YNhl0mw&list=PL6QREj8te1P54rZQx5AWWtFyf1hlznFjL&index=1)
 
@@ -52,5 +52,8 @@ sat, 27 september
 1. css has width-[29px] - what does it mean
 2. why importing like @assets/images/<something> throws error
 3. how adding types/images.d.ts solved above @assets error
+4. why scrollview added in sign-up.tsx
+
+sunday, 28 september
 
 
