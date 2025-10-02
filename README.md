@@ -1,5 +1,5 @@
 
-1hr 24min
+1hr 35min
 
 learning from this video: [Build a Full Stack React Native App with Payments | PostgreSQL, TypeScript, Stripe, Tailwind ](https://www.youtube.com/watch?v=kmy_YNhl0mw&list=PL6QREj8te1P54rZQx5AWWtFyf1hlznFjL&index=1)
 
@@ -55,5 +55,14 @@ sat, 27 september
 4. why scrollview added in sign-up.tsx
 
 sunday, 28 september
+
+
+thursday, 02 october
+1. how to create a thin line?
+  <View className="flex-1 h-[1px] bg-general-100"></View>
+2. copy paste /sign-up page to create /sign-in page. real coding, lol!
+
+3. using "clerk"
+
 
 

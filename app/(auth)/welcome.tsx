@@ -55,7 +55,7 @@ export default function Welcome() {
             ? router.replace("/(auth)/sign-up")
             : swipeRef.current?.scrollBy(1)
         }
-        className="w-[90%] mt-10 mb-10"
+        className="w-[80%] mt-10 mb-10"
       />
     </SafeAreaView>
   );
