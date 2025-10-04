@@ -3,6 +3,9 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 
+import { ClerkProvider } from '@clerk/clerk-expo';
+import { tokenCache } from '@clerk/clerk-expo/token-cache';
+
 // Set the animation options. This is optional.
 SplashScreen.setOptions({
   duration: 1000,
@@ -41,11 +44,13 @@ export default function AppLayout() {
 
 
   return (
+    <ClerkProvider tokenCache={tokenCache}>
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="(auth)" options={{ headerShown: false }} />
       <Stack.Screen name="(root)" options={{ headerShown: false }} />
       <Stack.Screen name="+not-found" />
     </Stack>
+    </ClerkProvider>
   );
 }

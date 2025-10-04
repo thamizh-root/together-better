@@ -65,4 +65,5 @@ thursday, 02 october
 3. using "clerk"
 
 
-
+saturday, 04 oct
+1. will route work even without "/_layout.tsx"  
