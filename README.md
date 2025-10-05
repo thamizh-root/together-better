@@ -1,5 +1,5 @@
 
-2hr 00min
+02hr 26min
 
 learning from this video: [Build a Full Stack React Native App with Payments | PostgreSQL, TypeScript, Stripe, Tailwind ](https://www.youtube.com/watch?v=kmy_YNhl0mw&list=PL6QREj8te1P54rZQx5AWWtFyf1hlznFjL&index=1)
 
@@ -61,16 +61,18 @@ thursday, 02 october
 1. how to create a thin line?
   <View className="flex-1 h-[1px] bg-general-100"></View>
 2. copy paste /sign-up page to create /sign-in page. real coding, lol!
-
 3. using "clerk"
 
 
 saturday, 04 oct
 1. will route work even without "/_layout.tsx".
 2. complete signup, signin is done and started using clerk  
+tokenCache is pre-built in the updated version we are using
 
 sunday, 05 oct
 1. when using useUser(), there is some values like  isLoaded, user, isSignedIn .
-dont simply return null, if !loading, show some content with <safeareaview>
+dont simply return null, if !loading, show some content with <safeareaview> [**extra]
 if there is no firstname available in the clerk user account, then you will get the same in useUser() hook.
 2. bottom-navigation-bar has been configured by us for bigger screen.
+3. added neon database with fetch /lib
+4. have not added origin like he did in app.json, just see whether it will cause any error [**extra]
