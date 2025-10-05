@@ -1,5 +1,5 @@
 
-1hr 35min
+2hr 00min
 
 learning from this video: [Build a Full Stack React Native App with Payments | PostgreSQL, TypeScript, Stripe, Tailwind ](https://www.youtube.com/watch?v=kmy_YNhl0mw&list=PL6QREj8te1P54rZQx5AWWtFyf1hlznFjL&index=1)
 
@@ -66,4 +66,11 @@ thursday, 02 october
 
 
 saturday, 04 oct
-1. will route work even without "/_layout.tsx"  
+1. will route work even without "/_layout.tsx".
+2. complete signup, signin is done and started using clerk  
+
+sunday, 05 oct
+1. when using useUser(), there is some values like  isLoaded, user, isSignedIn .
+dont simply return null, if !loading, show some content with <safeareaview>
+if there is no firstname available in the clerk user account, then you will get the same in useUser() hook.
+2. bottom-navigation-bar has been configured by us for bigger screen.

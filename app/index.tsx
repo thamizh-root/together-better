@@ -4,7 +4,10 @@ import { ActivityIndicator, View } from "react-native";
 import "../global.css";
 
 export default function Index() {
+  console.log("loading index.tsx...");
   const { isSignedIn, isLoaded } = useAuth(); // Destructure isLoaded
+  console.log("isSignedIn: ", isSignedIn);
+  console.log("isLoaded: ", isLoaded);
 
   // Show a loading indicator while Clerk is still checking the auth status
   if (!isLoaded) {
@@ -14,6 +17,7 @@ export default function Index() {
       </View>
     );
   }
+  console.log("application has been loaded!");
 
   // Once Clerk has loaded, redirect based on the isSignedIn status
   if (isSignedIn) {
