@@ -3,11 +3,11 @@
 
 learning from this video: [Build a Full Stack React Native App with Payments | PostgreSQL, TypeScript, Stripe, Tailwind ](https://www.youtube.com/watch?v=kmy_YNhl0mw&list=PL6QREj8te1P54rZQx5AWWtFyf1hlznFjL&index=1)
 
-why am i not trying this: https://netbeans.apache.org/front/main/download/nb27/
-
 neno database: https://console.neon.tech/app/projects/broad-sea-14561247
+clerk auth: https://dashboard.clerk.com/apps/app_33W5UMFuS4PNXRiZ8escx6CE3EH/instances/ins_33W5UIIzKgyyuyvvT0Mk3sUvij1
+github repo: https://github.com/adrianhajdin/portfolio 
 
- 
+-----
 
 expo start - to start the application
 
@@ -31,7 +31,7 @@ closly look at the ‘content’
 
 it should match all the files that gonna use expo
 
- 
+ why am i not trying this: https://netbeans.apache.org/front/main/download/nb27/
 
 
 i dont think we can view splash screen in expo go. see the stackoverflow here https://stackoverflow.com/questions/77405886/expo-app-not-displaying-custom-icon-and-splash-image . there is a note to that as well https://docs.expo.dev/develop/user-interface/splash-screen-and-app-icon/#splash-screen 
@@ -76,3 +76,9 @@ if there is no firstname available in the clerk user account, then you will get 
 2. bottom-navigation-bar has been configured by us for bigger screen.
 3. added neon database with fetch /lib
 4. have not added origin like he did in app.json, just see whether it will cause any error [**extra]
+
+
+tuesday, 07 oct
+1. signed up for https://myprojects.geoapify.com/projects
+
+
