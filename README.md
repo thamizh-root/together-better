@@ -94,3 +94,9 @@ none of these solution worked. https://github.com/react-native-maps/react-native
 only these steps worked :https://docs.expo.dev/versions/latest/sdk/map-view/
 
 
+so real another big problem is, google maps says for payment details even for free trials
+using olamaps now, developed a custom component... yay!! finally we are coding.. aye?
+
+
+
+

@@ -1,12 +1,20 @@
-import GoogleTextInput from "@/components/GoogleTextInput";
+import OlamapsTextInput from "@/components/GoogleTextInput";
 import Map from "@/components/Map";
 import RideCard from "@/components/RideCard";
 import { icons, images } from "@/constants";
 import { useLocationStore } from "@/store";
 import { useUser } from "@clerk/clerk-expo";
 import * as Location from "expo-location";
+import { router } from "expo-router";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, Image, Text, TouchableOpacity, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  Image,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 // A small utility to ensure logs only run in development.
@@ -126,18 +134,26 @@ export default function Home() {
   const { isLoaded, user, isSignedIn } = useUser();
   const loading = true;
 
-   const { setUserLocation, setDestinationLocation } = useLocationStore();
+  const { setUserLocation, setDestinationLocation } = useLocationStore();
 
-   const [hasPermission, setHasPermission] = useState<boolean>(false);
+  const [hasPermission, setHasPermission] = useState<boolean>(false);
 
   const handleSignOut = () => {};
-  const handleDestinationPress = () => {};
 
+  const handleDestinationPress = (location: {
+    latitude: number;
+    longitude: number;
+    address: string;
+  }) => {
+    setDestinationLocation(location);
+
+    router.push("/(root)/find-ride");
+  };
   useEffect(() => {
     log("Home component mounted!");
   }, []);
 
-    useEffect(() => {
+  useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
@@ -242,7 +258,7 @@ export default function Home() {
           <>
             <View className="flex flex-row items-center justify-between my-5">
               <Text className="text-2xl font-JakartaExtraBold">
-                Welcome {user?.firstName}{" "}👋
+                Welcome {user?.firstName} 👋
               </Text>
               <TouchableOpacity
                 onPress={handleSignOut}
@@ -252,21 +268,30 @@ export default function Home() {
               </TouchableOpacity>
             </View>
 
-            <GoogleTextInput
+            {/* <GoogleTextInput
+              icon={icons.search}
+              containerStyle="bg-white shadow-md shadow-neutral-300"
+              handlePress={handleDestinationPress}
+            /> */}
+
+            <OlamapsTextInput
               icon={icons.search}
               containerStyle="bg-white shadow-md shadow-neutral-300"
               handlePress={handleDestinationPress}
             />
 
-          <>
-          <Text className="text-xl font-JarkartaBold mt-5 mb-3">Your Current Location</Text>
-          <View className="flex flex-row items-center bg-transparent h-[300px] bg-blue-100">
-          <Map />
-          </View>
-          </>
-          
-          <Text className="text-xl font-JakartaBold mt-5 mb-3">Recent Rides</Text>
+            <>
+              <Text className="text-xl font-JarkartaBold mt-5 mb-3">
+                Your Current Location
+              </Text>
+              <View className="flex flex-row items-center bg-transparent h-[300px] bg-blue-100">
+                <Map />
+              </View>
+            </>
 
+            <Text className="text-xl font-JakartaBold mt-5 mb-3">
+              Recent Rides
+            </Text>
           </>
         )}
       />
