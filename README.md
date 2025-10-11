@@ -82,3 +82,15 @@ tuesday, 07 oct
 1. signed up for https://myprojects.geoapify.com/projects
 
 
+saturday, 11 oct 
+1. building dashboard, knowing flexbox, helped a lot here!
+
+2. 
+Error while updating property 'mapType' of view managed by: AIRMap
+#2654
+https://github.com/react-native-maps/react-native-maps/issues/2654
+
+none of these solution worked. https://github.com/react-native-maps/react-native-maps/issues/5424
+only these steps worked :https://docs.expo.dev/versions/latest/sdk/map-view/
+
+
