@@ -128,7 +128,7 @@ declare interface DriverStore {
     drivers: MarkerData[];
     selectedDriver: number | null;
     setSelectedDriver: (driverId: number) => void;
-    setDrivers: (drivers: MarkerData[]) => void;
+    setDrivers: (drivers: any) => void;
     clearSelectedDriver: () => void;
 }
 

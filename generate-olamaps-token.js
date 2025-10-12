@@ -35,7 +35,7 @@ async function main() {
   console.log('Access Token:', token);
 
   const places = await autocompletePlaces(token, searchText);
-  console.log('Autocomplete Results:', places);
+  console.log('Autocomplete Results:', places?.status);
 }
 
 main().catch(console.error);

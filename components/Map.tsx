@@ -72,6 +72,10 @@ export default function Map() {
   const [markers, setMarkers] = useState<MarkerData[]>([]);
 
   useEffect(() => {
+
+    //TODO: remove this, this will affect list of drivers in confirm-ride windows
+    setDrivers(drivers);
+
     if (Array.isArray(drivers)) {
       if (!userLatitude || !userLongitude) return;
 
@@ -81,7 +85,7 @@ export default function Map() {
         userLongitude,
       });
 
-      console.log("newMarkers", newMarkers);
+      // console.log("newMarkers", newMarkers);
 
       setMarkers(newMarkers);
     }
@@ -97,7 +101,6 @@ export default function Map() {
         showsUserLocation={true}
         userInterfaceStyle="light"
       >
-        {" "}
         {markers.map((marker, index) => (
           <Marker
             key={marker.id}

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import {
-    ActivityIndicator,
-    FlatList,
-    Image,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  FlatList,
+  Image,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 import { icons } from "@/constants";
@@ -47,7 +47,7 @@ const OlamapsTextInput = ({
           headers: { Authorization: `Bearer ${olamapsApiKey}` },
         });
 
-        console.log("response", Array.isArray(response?.predictions), response?.predictions[0]);
+        console.log("response", Array.isArray(response?.predictions));
 
         if (Array.isArray(response?.predictions)) {
           setSuggestions(

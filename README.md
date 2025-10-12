@@ -98,5 +98,15 @@ so real another big problem is, google maps says for payment details even for fr
 using olamaps now, developed a custom component... yay!! finally we are coding.. aye?
 
 
+sunday, 12 oct 
 
+1. again and again we are facing an issue..
+when we tried to install react-native-google-maps ---> expo install <npm-module> fixed... it just installed compatible version...
+
+
+again today.. we tried to install react-native-bottom-sheet caused issue ---> expo install <npm-module> has fixed the issue.
+
+2. renderItem={({item}: any) => <DriverCard item={item} />
+above is not same as 
+renderItem={(item: any) => <DriverCard item={item}
 
