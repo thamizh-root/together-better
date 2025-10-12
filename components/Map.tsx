@@ -1,9 +1,10 @@
 import { icons } from "@/constants";
-import { calculateRegion, generateMarkersFromData } from "@/lib/map";
+import { useFetch } from "@/lib/fetch";
+import { calculateDriverTimes, calculateRegion, generateMarkersFromData } from "@/lib/map";
 import { useDriverStore, useLocationStore } from "@/store";
-import { MarkerData } from "@/types/type";
+import { Driver, MarkerData } from "@/types/type";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 const drivers = [
   {
@@ -71,10 +72,11 @@ export default function Map() {
 
   const [markers, setMarkers] = useState<MarkerData[]>([]);
 
-  useEffect(() => {
+  const { data: drivers, loading, error } = useFetch<Driver[]>("/(api)/driver");
 
+  useEffect(() => {
     //TODO: remove this, this will affect list of drivers in confirm-ride windows
-    setDrivers(drivers);
+    // setDrivers(drivers);
 
     if (Array.isArray(drivers)) {
       if (!userLatitude || !userLongitude) return;
@@ -90,6 +92,40 @@ export default function Map() {
       setMarkers(newMarkers);
     }
   }, [drivers, userLatitude, userLongitude]);
+
+  useEffect(() => {
+    if (
+      markers.length > 0 &&
+      destinationLatitude !== undefined &&
+      destinationLongitude !== undefined
+    ) {
+      calculateDriverTimes({
+        markers,
+        userLatitude,
+        userLongitude,
+        destinationLatitude,
+        destinationLongitude,
+      }).then((drivers) => {
+        setDrivers(drivers as MarkerData[]);
+      });
+    }
+  }, [markers, destinationLatitude, destinationLongitude]);
+
+  if (loading || (!userLatitude && !userLongitude)) {
+    return (
+      <View className="flex justify-between items-center w-full">
+        <ActivityIndicator size="small" color="#000" />
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View className="flex justify-between items-center w-full">
+        <Text>Error: {error}</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
