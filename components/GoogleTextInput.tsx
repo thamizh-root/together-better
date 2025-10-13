@@ -53,8 +53,8 @@ const OlamapsTextInput = ({
           setSuggestions(
             response.predictions.map((item: any) => ({
               id: item?.place_id,
-              latitude: item.location?.lat, // coords: [lng, lat]
-              longitude: item.location?.lng,
+              latitude: item?.geometry?.location?.lat, // coords: [lng, lat]
+              longitude: item?.geometry?.location?.lng,
               title: item.description,
               address: item.description,
             }))
@@ -74,6 +74,7 @@ const OlamapsTextInput = ({
   }, [query]);
 
   const onSelectSuggestion = (item: any) => {
+    console.log(" +++++++++++++ onSelectSuggestion ++++++++++++ ", item);
     setQuery(item.title);
     setSuggestions([]);
     handlePress({

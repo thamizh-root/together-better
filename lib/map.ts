@@ -94,19 +94,41 @@ export const calculateDriverTimes = async ({
     return;
 
   try {
+    //   curl 'https://api.olamaps.io/routing/v1/directions?origin=28.638555%2C76.965502&destination=28.539669%2C77.051907&api_key=YOUR_SECRET_TOKEN' \
+    // --request POST
+
     const timesPromises = markers.map(async (marker) => {
       const responseToUser = await fetch(
-        `https://maps.googleapis.com/maps/api/directions/json?origin=${marker.latitude},${marker.longitude}&destination=${userLatitude},${userLongitude}&key=${directionsAPI}`
+        `https://api.olamaps.io/routing/v1/directions?origin=${marker.latitude},${marker.longitude}&destination=${userLatitude},${userLongitude}&key=${directionsAPI}`
       );
+      // console.log(" -------------------- responseToUser -------------------- ", responseToUser);
       const dataToUser = await responseToUser.json();
-      const timeToUser = dataToUser.routes[0].legs[0].duration.value; // Time in seconds
+      console.log(
+        " -------------------- dataToUser -------------------- ",
+        dataToUser
+      );
+
+      // if (!dataToUser?.routes?.length || !dataToUser.routes[0]?.legs?.length) {
+      //   console.warn("⚠️ No valid route data found:", dataToUser);
+      //   return null; // or continue to next driver
+      // }
+
+      const timeToUser = dataToUser?.routes[0]?.legs[0].duration || null; // Time in seconds
+
+      console.log(`https://api.olamaps.io/routing/v1/directions?origin=${userLatitude},${userLongitude}&destination=${destinationLatitude},${destinationLongitude}&key=${directionsAPI}`)
 
       const responseToDestination = await fetch(
-        `https://maps.googleapis.com/maps/api/directions/json?origin=${userLatitude},${userLongitude}&destination=${destinationLatitude},${destinationLongitude}&key=${directionsAPI}`
+        `https://api.olamaps.io/routing/v1/directions?origin=${userLatitude},${userLongitude}&destination=${destinationLatitude},${destinationLongitude}&key=${directionsAPI}`
       );
+      // console.log(" -------------------- responseToDestination -------------------- ", responseToDestination);
+
       const dataToDestination = await responseToDestination.json();
-      const timeToDestination =
-        dataToDestination.routes[0].legs[0].duration.value; // Time in seconds
+      console.log(
+        " -------------------- dataToDestination -------------------- ",
+        dataToDestination
+      );
+
+      const timeToDestination = dataToDestination.routes[0].legs[0].duration; // Time in seconds
 
       const totalTime = (timeToUser + timeToDestination) / 60; // Total time in minutes
       const price = (totalTime * 0.5).toFixed(2); // Calculate price based on time

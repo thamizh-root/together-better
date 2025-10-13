@@ -145,6 +145,7 @@ export default function Home() {
     longitude: number;
     address: string;
   }) => {
+   // console.log("setting destination location here:", location);
     setDestinationLocation(location);
 
     router.push("/(root)/find-ride");
@@ -167,6 +168,12 @@ export default function Home() {
         latitude: location.coords?.latitude!,
         longitude: location.coords?.longitude!,
       });
+
+   //   console.log("userlocation, home.tsx", {
+      //   latitude: location.coords?.latitude,
+      //   longitude: location.coords?.longitude,
+      //   address: `${address[0].name}, ${address[0].region}`,
+      // });
 
       setUserLocation({
         latitude: location.coords?.latitude,

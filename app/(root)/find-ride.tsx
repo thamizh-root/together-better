@@ -22,7 +22,7 @@ const FindRide = () => {
 
   return (
     <>
-      <RideLayout snapPoints={["65%"]} title="Ride">
+      <RideLayout snapPoints={["75%", "85%"]} title="Ride">
         {/* <Text className="text-2xl">You are here: {userAddress}</Text>
         <Text className="text-2xl">You are going to: {destinationAddress}</Text> */}
 

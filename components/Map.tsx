@@ -70,15 +70,20 @@ export default function Map() {
     destinationLongitude,
   });
 
+//  console.log("region, map.tsx", region);
+
   const [markers, setMarkers] = useState<MarkerData[]>([]);
 
   const { data: drivers, loading, error } = useFetch<Driver[]>("/(api)/driver");
+
+  // console.log("drivers - map.tsx", drivers?.length);
 
   useEffect(() => {
     //TODO: remove this, this will affect list of drivers in confirm-ride windows
     // setDrivers(drivers);
 
     if (Array.isArray(drivers)) {
+    //  console.log("!userLatitude || !userLongitude", !userLatitude || !userLongitude, userLatitude, userLongitude);
       if (!userLatitude || !userLongitude) return;
 
       const newMarkers = generateMarkersFromData({
@@ -88,12 +93,13 @@ export default function Map() {
       });
 
       // console.log("newMarkers", newMarkers);
-
+// console.log("newMarkers", newMarkers);
       setMarkers(newMarkers);
     }
   }, [drivers, userLatitude, userLongitude]);
 
   useEffect(() => {
+   // console.log(" -------------------- --------------------", markers.length,destinationLatitude,destinationLongitude);
     if (
       markers.length > 0 &&
       destinationLatitude !== undefined &&
@@ -106,6 +112,7 @@ export default function Map() {
         destinationLatitude,
         destinationLongitude,
       }).then((drivers) => {
+       // console.log("ConfirmRide drivers, map.tsx:", drivers);
         setDrivers(drivers as MarkerData[]);
       });
     }
