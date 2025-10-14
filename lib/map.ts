@@ -1,6 +1,6 @@
 import { MarkerData } from "@/types/type";
 
-const directionsAPI = process.env.EXPO_PUBLIC_DIRECTIONS_API_KEY;
+const directionsAPI = process.env.EXPO_PUBLIC_OLAMAPS_API_KEY;
 
 export const generateMarkersFromData = ({
   data,
@@ -85,6 +85,7 @@ export const calculateDriverTimes = async ({
   destinationLatitude: number | null;
   destinationLongitude: number | null;
 }) => {
+
   if (
     !userLatitude ||
     !userLongitude ||
@@ -94,44 +95,19 @@ export const calculateDriverTimes = async ({
     return;
 
   try {
-    //   curl 'https://api.olamaps.io/routing/v1/directions?origin=28.638555%2C76.965502&destination=28.539669%2C77.051907&api_key=YOUR_SECRET_TOKEN' \
-    // --request POST
-
     const timesPromises = markers.map(async (marker) => {
-      const responseToUser = await fetch(
-        `https://api.olamaps.io/routing/v1/directions?origin=${marker.latitude},${marker.longitude}&destination=${userLatitude},${userLongitude}&key=${directionsAPI}`
-      );
-      // console.log(" -------------------- responseToUser -------------------- ", responseToUser);
+      const urlToUser = `https://api.olamaps.io/routing/v1/directions?origin=${marker.latitude},${marker.longitude}&destination=${userLatitude},${userLongitude}&api_key=${directionsAPI}`;
+      const responseToUser = await fetch(urlToUser,{ method: 'post' });
       const dataToUser = await responseToUser.json();
-      console.log(
-        " -------------------- dataToUser -------------------- ",
-        dataToUser
-      );
+      if (dataToUser?.error_msg) { return undefined }
+      const timeToUser = dataToUser?.routes[0]?.legs[0].duration || null;
 
-      // if (!dataToUser?.routes?.length || !dataToUser.routes[0]?.legs?.length) {
-      //   console.warn("⚠️ No valid route data found:", dataToUser);
-      //   return null; // or continue to next driver
-      // }
-
-      const timeToUser = dataToUser?.routes[0]?.legs[0].duration || null; // Time in seconds
-
-      console.log(`https://api.olamaps.io/routing/v1/directions?origin=${userLatitude},${userLongitude}&destination=${destinationLatitude},${destinationLongitude}&key=${directionsAPI}`)
-
-      const responseToDestination = await fetch(
-        `https://api.olamaps.io/routing/v1/directions?origin=${userLatitude},${userLongitude}&destination=${destinationLatitude},${destinationLongitude}&key=${directionsAPI}`
-      );
-      // console.log(" -------------------- responseToDestination -------------------- ", responseToDestination);
-
+      const urlToDestination = `https://api.olamaps.io/routing/v1/directions?origin=${userLatitude},${userLongitude}&destination=${destinationLatitude},${destinationLongitude}&&api_key=${directionsAPI}`;
+      const responseToDestination = await fetch(urlToDestination, { method: 'post' });
       const dataToDestination = await responseToDestination.json();
-      console.log(
-        " -------------------- dataToDestination -------------------- ",
-        dataToDestination
-      );
-
-      const timeToDestination = dataToDestination.routes[0].legs[0].duration; // Time in seconds
-
-      const totalTime = (timeToUser + timeToDestination) / 60; // Total time in minutes
-      const price = (totalTime * 0.5).toFixed(2); // Calculate price based on time
+      const timeToDestination = dataToDestination.routes[0].legs[0].duration; 
+      const totalTime = (timeToUser + timeToDestination) / 60; 
+      const price = (totalTime * 0.5).toFixed(2);
 
       return { ...marker, time: totalTime, price };
     });

@@ -70,7 +70,7 @@ export default function Map() {
     destinationLongitude,
   });
 
-//  console.log("region, map.tsx", region);
+  //  console.log("region, map.tsx", region);
 
   const [markers, setMarkers] = useState<MarkerData[]>([]);
 
@@ -83,7 +83,7 @@ export default function Map() {
     // setDrivers(drivers);
 
     if (Array.isArray(drivers)) {
-    //  console.log("!userLatitude || !userLongitude", !userLatitude || !userLongitude, userLatitude, userLongitude);
+      //  console.log("!userLatitude || !userLongitude", !userLatitude || !userLongitude, userLatitude, userLongitude);
       if (!userLatitude || !userLongitude) return;
 
       const newMarkers = generateMarkersFromData({
@@ -93,18 +93,20 @@ export default function Map() {
       });
 
       // console.log("newMarkers", newMarkers);
-// console.log("newMarkers", newMarkers);
       setMarkers(newMarkers);
     }
   }, [drivers, userLatitude, userLongitude]);
 
   useEffect(() => {
-   // console.log(" -------------------- --------------------", markers.length,destinationLatitude,destinationLongitude);
+    console.log("Am i gonna calculate driver times?", markers.length > 0 && destinationLatitude !== undefined && destinationLongitude !== undefined);
     if (
       markers.length > 0 &&
       destinationLatitude !== undefined &&
       destinationLongitude !== undefined
     ) {
+
+      // console.log("markers",markers)
+      
       calculateDriverTimes({
         markers,
         userLatitude,
@@ -112,8 +114,14 @@ export default function Map() {
         destinationLatitude,
         destinationLongitude,
       }).then((drivers) => {
-       // console.log("ConfirmRide drivers, map.tsx:", drivers);
-        setDrivers(drivers as MarkerData[]);
+
+        if (drivers) {
+          console.log("List of confirmed drivers, map.tsx:", drivers);
+          setDrivers(drivers as MarkerData[]);
+        } else {
+          console.log("Expected drivers when calculating driver times. Instead received", drivers);
+        }
+
       });
     }
   }, [markers, destinationLatitude, destinationLongitude]);
