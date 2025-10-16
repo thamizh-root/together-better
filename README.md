@@ -110,3 +110,16 @@ again today.. we tried to install react-native-bottom-sheet caused issue ---> ex
 above is not same as 
 renderItem={(item: any) => <DriverCard item={item}
 
+
+wednesday, 15 oct
+
+1. // we dont have a google map API, so no directions
+[*** how to fix this]
+
+
+thursday, 16 oct
+
+1.     const paymentDetails: any = await presentPaymentSheet();
+    // TO-DO: above method is not returning payment details
+    // so we cannot double-check the payments
+

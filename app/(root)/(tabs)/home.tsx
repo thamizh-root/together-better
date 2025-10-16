@@ -2,8 +2,10 @@ import OlamapsTextInput from "@/components/GoogleTextInput";
 import Map from "@/components/Map";
 import RideCard from "@/components/RideCard";
 import { icons, images } from "@/constants";
+import { useFetch } from "@/lib/fetch";
 import { useLocationStore } from "@/store";
-import { useUser } from "@clerk/clerk-expo";
+import { Ride } from "@/types/type";
+import { useAuth, useUser } from "@clerk/clerk-expo";
 import * as Location from "expo-location";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
@@ -132,13 +134,24 @@ const recentRides = [
 
 export default function Home() {
   const { isLoaded, user, isSignedIn } = useUser();
-  const loading = true;
+  const { signOut } = useAuth();
+  // const loading = true;
 
   const { setUserLocation, setDestinationLocation } = useLocationStore();
 
   const [hasPermission, setHasPermission] = useState<boolean>(false);
 
-  const handleSignOut = () => {};
+    const {
+    data: recentRides,
+    loading,
+    error,
+  } = useFetch<Ride[]>(`/(api)/ride/${user?.id}`);
+
+
+    const handleSignOut = () => {
+    signOut();
+    router.replace("/(auth)/sign-in");
+  };
 
   const handleDestinationPress = (location: {
     latitude: number;
